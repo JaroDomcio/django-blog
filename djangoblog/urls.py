@@ -21,5 +21,5 @@ from .views import home, post_detail
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", home, name="home"),
-    path("/<slug:slug>", post_detail, name="post_detail" ),
+    path("/<slug:slug>", post_detail, name="post_detail"),
 ]
