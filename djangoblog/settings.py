@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os 
+from dotenv import load_dotenv
+load_dotenv()
+
+EMAIL_H_USER = os.getenv('EMAIL_H_USER')
+EMAIL_H_PASSWORD = os.getenv('EMAIL_H_PASSWORD')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -125,3 +131,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = EMAIL_H_USER 
+EMAIL_HOST_PASSWORD = EMAIL_H_PASSWORD
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

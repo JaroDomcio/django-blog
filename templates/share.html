@@ -1,0 +1,16 @@
+{% extends 'navbar.html' %}
+
+
+{% block content %}
+    {% if sent %}
+        <h1>Email has been sent successfully</h1>
+        <p>You sent {{ post.title }} to {{ form.cleaned_data.to }}</p>
+    {% else %}
+        <h1>Share {{ post.title }} by e-mail</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type = "submit" value = "Sent e-mail message ">
+        </form>
+    {% endif %}
+{% endblock %}
