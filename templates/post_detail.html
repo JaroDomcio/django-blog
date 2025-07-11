@@ -4,4 +4,15 @@
     <h1>{{ post.title }}</h1>
     <h2>{{ post.content }}</h2>
     <a href="{% url "post_share" post.id %}">Share post</a>
+{#    <a href = {% url "post_comment" post.id %}>Comment this post</a>#}
+    <h2>Comments</h2>
+    {% for comment in comments %}
+        <p>{{ comment.name }}</p>
+    {% endfor %}
+    <h2>Comment Post</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <input type="submit" value="Comment">
+</form>
 {% endblock %}

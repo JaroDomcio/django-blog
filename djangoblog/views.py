@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import EmailPostForm
+from .forms import EmailPostForm, CommentForm
 from .models import Post
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
@@ -15,7 +15,19 @@ def home(request):
 
 def post_detail(request,slug):
     post = get_object_or_404(Post, slug=slug)
-    return render(request, 'post_detail.html', {'post': post})
+    comments = post.comments.filter(active=True)
+
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('post_detail', slug=post.slug)
+    else:
+        form = CommentForm()
+
+    return render(request, 'post_detail.html', {'post': post, 'comments': comments, "form": form})
 
 def post_share(request,id):
     post = get_object_or_404(Post, id=id, status = Post.Status.PUBLISHED)
@@ -32,3 +44,17 @@ def post_share(request,id):
     else:
         form = EmailPostForm()
     return render(request, 'share.html', {'post': post, 'form': form, 'sent': sent})
+
+
+# def post_comment(request,id):
+#     post = get_object_or_404(Post, id=id)
+#     if request.method == 'POST':
+#         form = CommentForm(request.POST)
+#         if form.is_valid():
+#             comment = form.save(commit=False)
+#             comment.post = post
+#             comment.save()
+#             return redirect('post_detail', slug=post.slug)
+#     else:
+#         form = CommentForm()
+#     return render(request, 'comment_post.html', {'form': form})
