@@ -4,13 +4,20 @@ from .models import Post
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from .settings import EMAIL_HOST_USER
+from taggit.models import Tag
 
-def home(request):
-    posts = Post.objects.all()
+def post_list(request, tag_slug = None):
+    posts = Post.objects.filter(status = Post.Status.PUBLISHED)
+
+    tag = None
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        posts = posts.filter(tags__in=[tag])
+
     paginator = Paginator(posts, 3)
     page_number = request.GET.get('page', 1)
     posts = paginator.get_page(page_number)
-    return render(request, 'home.html', {'posts': posts})
+    return render(request, 'post_list.html', {'posts': posts, 'tag': tag})
 
 
 def post_detail(request,slug):

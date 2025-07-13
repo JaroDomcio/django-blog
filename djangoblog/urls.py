@@ -16,11 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import home, post_detail, post_share
+from .views import post_list, post_detail, post_share
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", home, name="home"),
+    path("", post_list, name="post_list"),
+    path("tag/<slug:tag_slug>", post_list, name="post_list_by_tag"),
     path("<slug:slug>/", post_detail, name="post_detail"),
     path("<int:id>/share/", post_share, name="post_share"),
 ]
