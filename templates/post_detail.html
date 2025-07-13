@@ -2,6 +2,9 @@
 
 {% block content %}
     <h1>{{ post.title }}</h1>
+    {% if post.tags.all %}
+        <p>Tags: {{ post.tags.all|join:", " }}</p>
+    {% endif %}
     <h2>{{ post.content }}</h2>
     <a href="{% url "post_share" post.id %}">Share post</a>
 {#    <a href = {% url "post_comment" post.id %}>Comment this post</a>#}

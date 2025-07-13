@@ -46,15 +46,3 @@ def post_share(request,id):
     return render(request, 'share.html', {'post': post, 'form': form, 'sent': sent})
 
 
-# def post_comment(request,id):
-#     post = get_object_or_404(Post, id=id)
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST)
-#         if form.is_valid():
-#             comment = form.save(commit=False)
-#             comment.post = post
-#             comment.save()
-#             return redirect('post_detail', slug=post.slug)
-#     else:
-#         form = CommentForm()
-#     return render(request, 'comment_post.html', {'form': form})
