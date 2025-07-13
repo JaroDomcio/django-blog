@@ -5,7 +5,18 @@
     <p>Tags: {{ post.tags.all|join:", " }}</p>
     <h2>{{ post.content }}</h2>
     <a href="{% url "post_share" post.id %}">Share post</a>
-{#    <a href = {% url "post_comment" post.id %}>Comment this post</a>#}
+
+    <h2>Similar Posts</h2>
+    {% if similar_posts %}
+        {% for s_post in similar_posts %}
+            <p>
+                <a href = "{{ s_post.get_absolute_url }}">{{ s_post.title }}</a>
+            </p>
+        {% endfor %}
+    {% else %}
+        <p>There's no similar posts</p>
+    {% endif %}
+
     <h2>Comments</h2>
     {% for comment in comments %}
         <p>{{ comment.name }}</p>
@@ -15,5 +26,6 @@
         {% csrf_token %}
         {{ form.as_p }}
     <input type="submit" value="Comment">
-</form>
+    </form>
+
 {% endblock %}

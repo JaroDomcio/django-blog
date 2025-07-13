@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from django.core.mail import send_mail
 from .settings import EMAIL_HOST_USER
 from taggit.models import Tag
-
+from django.db.models import Count
 def post_list(request, tag_slug = None):
     posts = Post.objects.filter(status = Post.Status.PUBLISHED)
 
@@ -33,8 +33,15 @@ def post_detail(request,slug):
             return redirect('post_detail', slug=post.slug)
     else:
         form = CommentForm()
+        post_tags_ids = post.tags.values_list('id', flat=True)
+        similar_posts = Post.objects.filter(tags__in=post_tags_ids).exclude(id=post.id)
+        similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags','-created_date')[:4]
 
-    return render(request, 'post_detail.html', {'post': post, 'comments': comments, "form": form})
+
+    return render(request, 'post_detail.html', {'post': post,
+                                                'comments': comments,
+                                                "form": form,
+                                                "similar_posts": similar_posts})
 
 def post_share(request,id):
     post = get_object_or_404(Post, id=id, status = Post.Status.PUBLISHED)
