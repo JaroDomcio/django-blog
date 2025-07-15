@@ -3,6 +3,11 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
 
+
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=Post.Status.PUBLISHED)
+
 class Post(models.Model):
 
     class Status(models.TextChoices):
@@ -17,11 +22,15 @@ class Post(models.Model):
     status = models.CharField(max_length=10, choices=Status.choices, default=Status.DRAFT)
     tags = TaggableManager()
 
+    objects = models.Manager()
+    published = PublishedManager()
+
     def __str__(self):
         return self.title
 
     def Meta(self):
         ordering = ('-created_date')
+
 
 
     def get_absolute_url(self):

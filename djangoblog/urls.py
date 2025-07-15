@@ -17,11 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import post_list, post_detail, post_share
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import PostSitemap
 
+sitemaps = {
+    'posts': PostSitemap,
+}
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", post_list, name="post_list"),
     path("tag/<slug:tag_slug>", post_list, name="post_list_by_tag"),
     path("<slug:slug>/", post_detail, name="post_detail"),
     path("<int:id>/share/", post_share, name="post_share"),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
