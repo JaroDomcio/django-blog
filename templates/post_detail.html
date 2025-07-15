@@ -1,9 +1,10 @@
 {% extends 'navbar.html' %}
+{% load blog_tags %}
 
 {% block content %}
     <h1>{{ post.title }}</h1>
     <p>Tags: {{ post.tags.all|join:", " }}</p>
-    <h2>{{ post.content }}</h2>
+    <h2>{{ post.content|markdown }}</h2>
     <a href="{% url "post_share" post.id %}">Share post</a>
 
     <h2>Similar Posts</h2>
