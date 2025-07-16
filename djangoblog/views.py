@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from .settings import EMAIL_HOST_USER
 from taggit.models import Tag
 from django.db.models import Count
-from django.contrib.postgres.search import SearchVector
+from django.contrib.postgres.search import SearchVector, TrigramSimilarity
 def post_list(request, tag_slug = None):
     posts = Post.objects.filter(status = Post.Status.PUBLISHED)
 
@@ -61,8 +61,19 @@ def post_share(request,id):
     return render(request, 'share.html', {'post': post, 'form': form, 'sent': sent})
 
 
+# def post_search(request):
+#     form = SearchForm()
+#     query = None
+#     results = []
+#
+#     if 'query' in request.GET:
+#         form = SearchForm(request.GET)
+#         if form.is_valid():
+#             query = form.cleaned_data['query']
+#             results = Post.published.annotate(search=SearchVector('title', 'content')).filter(search=query)
+#     return render(request,'search.html',{'form':form,'results':results,'query':query})
+
 def post_search(request):
-    print("uruchiomiono")
     form = SearchForm()
     query = None
     results = []
@@ -71,6 +82,5 @@ def post_search(request):
         form = SearchForm(request.GET)
         if form.is_valid():
             query = form.cleaned_data['query']
-            results = Post.published.annotate(search=SearchVector('title', 'content')).filter(search=query)
+            results = Post.published.annotate(similarity=TrigramSimilarity('title', query)).filter(similarity__gt=0.1).order_by('-similarity')
     return render(request,'search.html',{'form':form,'results':results,'query':query})
-

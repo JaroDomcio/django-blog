@@ -11,11 +11,13 @@
         </h3>
         <h3>
             {% for post in results %}
-                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-        </h3>
+                <li>
+                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </li>
             {% empty %}
                 <h2>There's no posts which contains {{ query }}</h2>
             {% endfor %}
+         </h3>
     {% else %}
         <h1>Search posts</h1>
         <form method = "GET">
