@@ -11,6 +11,12 @@
     {% block content %} {% endblock %}
 </div>
 <div>
+    <form method = "GET" action="{% url 'post_search'%}">
+        {{ global_search_form.as_p }}
+        <input type="submit" value="Search">
+    </form>
+</div>
+<div>
     I have published {% total_posts %} posts so far
     <h3>Latest posts</h3>
     {% show_latest_posts 3 %}

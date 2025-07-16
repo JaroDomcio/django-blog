@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import post_list, post_detail, post_share
+from .views import post_list, post_detail, post_share, post_search
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import PostSitemap
 
@@ -26,6 +26,7 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", post_list, name="post_list"),
+    path("search/", post_search, name="post_search"),
     path("tag/<slug:tag_slug>", post_list, name="post_list_by_tag"),
     path("<slug:slug>/", post_detail, name="post_detail"),
     path("<int:id>/share/", post_share, name="post_share"),
