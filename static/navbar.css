@@ -1,0 +1,75 @@
+.navbar {
+    display: flex;                   /* Ustawia układ elastyczny (flexbox), elementy będą w jednej linii */
+    justify-content: space-between;   /* Rozsuwa elementy na boki – pierwszy do lewej, ostatni do prawej */
+    align-items: center;              /* Wyrównuje elementy w pionie do środka kontenera */
+    background-color: #222 ;           /* Ustawia kolor tła na ciemnoszary (prawie czarny) */
+    padding: 10px 40px;               /* powiększa 10px -wysokość 40px-szerokość  */
+    position: fixed;       /* Przykleja navbar do górnej krawędzi */
+    top: 0;                /* 0 pikseli od góry */
+    left: 0;               /* 0 pikseli od lewej */
+    right: 0;
+}
+
+
+
+body {
+    padding-top: 80px;     /* Odstęp od góry, żeby treść nie schodziła pod navbar */
+    background-color: beige;
+}
+
+.search-button{
+    background-color: #27ae60;
+    border: none; /* brak ramki */
+    padding: 4px 10px;
+    border-radius: 8px; /* zaokrąglenie ramki */
+    cursor: pointer; /* rączka przy najechaniu */
+    margin-left: 10px; /*przesunięcie od lewej*/
+    font-weight: bold; /*pogrubienie czcionki */
+    transition: transform 0.15s, background-color 0.15s; /* dodaje płynności przy transformacji */
+}
+
+.search-button:hover{
+    background-color: #219150;
+    transform: translateY(-3px);
+}
+
+.home-button a{
+    display: inline-block; /* manipuluje sposobem wyświetlania */
+    color: black;
+    background-color: #27ae60;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none; /*usuwa linie*/
+    padding: 4px 10px;
+    transition: transform 0.15s, background-color 0.15s;
+}
+
+.home-button a:hover{
+    transform: translateY(-3px);
+    background-color: #219150;
+}
+
+.navbar-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 4px 24px;
+    border: 2px solid #27ae60;
+    border-radius: 10px;
+    background: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    transition: border-color 0.2s;
+}
+.navbar-title:hover {
+    border-color: #219150;
+}
+
+.navbar input[type="text"]{
+    padding: 6px 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: darkgrey;
+}
+
+

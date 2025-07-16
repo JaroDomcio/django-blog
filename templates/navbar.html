@@ -1,27 +1,36 @@
 
 {% load blog_tags %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-{% block head %} {% endblock %}
+    <link rel="stylesheet" href="{% static 'navbar.css' %}">
+    {% block head %} {% endblock %}
 </head>
 <body>
-<div>
-    {% block content %} {% endblock %}
-</div>
-<div>
-    <form method = "GET" action="{% url 'post_search'%}">
-        {{ global_search_form.as_p }}
-        <input type="submit" value="Search">
-    </form>
-</div>
-<div>
-    I have published {% total_posts %} posts so far
-    <h3>Latest posts</h3>
-    {% show_latest_posts 3 %}
-    <h3>Most commented posts</h3>
-    {% show_most_commented_posts 3 %}
-</div>
+    <div class="navbar">
+        <div class="home-button">
+            <a href="{% url 'post_list' %}">Home</a>
+        </div>
+
+        <span class="navbar-title">Dominik's blog</span>
+
+        <form method = "GET" action="{% url 'post_search'%}">
+            {{ global_search_form.query }}
+            <input type="submit" value="Search" class="search-button">
+        </form>
+    </div>
+    <div>
+        I have published {% total_posts %} posts so far
+        <h3>Latest posts</h3>
+        {% show_latest_posts 3 %}
+        <h3>Most commented posts</h3>
+        {% show_most_commented_posts 3 %}
+    </div>
+    <div>
+        {% block content %} {% endblock %}
+    </div>
 </body>
 </html>
