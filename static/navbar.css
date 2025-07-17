@@ -98,3 +98,16 @@ body {
     font-size: 18px;
     text-align: center;
 }
+
+.main-layout {
+    display: flex; /* flexbox-dzieci będą obok siebie */
+    align-items: flex-start; /* wyrównanie do góry */
+    justify-content: center; /* wyśrodkowanie całości */
+    gap: 56px; /* odstęp między treścią a boxem */
+    padding: 40px; /* margines od góry */
+}
+
+.content-area {
+    flex: 1 1 0; /* elastyczna szerokość(Powiększać jeżeli jest miejsce ,pomniejszać jeśli brak miejsca, domyślny rozmiar początkowy)*/
+    max-width: 900px; /* szerokość obszaru z treścią/postami */
+}

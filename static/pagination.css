@@ -1,0 +1,30 @@
+.pagination {
+    display: flex;
+    justify-content: center;        /* Wyśrodkowanie całej paginacji */
+    margin: 36px 0 24px 0;          /* Odstęp od pozostałych elementów */
+    font-size: 17px;
+}
+
+.pagination span {
+    display: flex;
+    align-items: center;
+    gap: 20px;                      /* Odstęp między linkami i info */
+}
+
+.pagination a {
+    background: #27ae60;
+    color: #fff;
+    text-decoration: none;
+    padding: 6px 20px;
+    border-radius: 7px;
+    margin: 0 4px;
+    font-weight: bold;
+    transition: background 0.15s, color 0.15s;
+}
+
+.pagination a:hover {
+    background: #219150;
+    color: #fff;
+}
+
+

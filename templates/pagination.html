@@ -1,4 +1,10 @@
-<div>
+{% load static %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'pagination.css' %}">
+</head>
+
+<div class="pagination">
     <span>
         {% if page.has_previous %}
             <a href="?page={{ page.previous_page_number }}">Previous</a>

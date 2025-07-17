@@ -1,0 +1,59 @@
+.page-main {
+    width: 100%;
+}
+
+.posts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 18px rgba(39,174,96,0.07);
+    padding: 22px 28px 16px 28px;
+    border: 1.5px solid #eafaf1;
+    margin-bottom: 32px;
+    transition: box-shadow 0.18s, border 0.18s;
+}
+
+.post-card:hover {
+    box-shadow: 0 4px 24px rgba(39,174,96,0.12);
+    border: 1.5px solid #27ae60;
+}
+
+.post-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #27ae60;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    transition: color 0.18s;
+}
+
+.post-title:hover {
+    color: #219150;
+    text-decoration: underline;
+}
+
+.tag-list {
+    margin-top: 10px;
+}
+
+.tag-list a {
+    color: #0b5345;
+    background: #e6fff6;
+    font-size: 14px;
+    margin-right: 6px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.14s, color 0.14s;
+}
+
+.tag-list a:hover {
+    background: #d1f2eb;
+    color: #219150;
+}
