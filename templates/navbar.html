@@ -22,12 +22,14 @@
             <input type="submit" value="Search" class="search-button">
         </form>
     </div>
-    <div>
-        I have published {% total_posts %} posts so far
-        <h3>Latest posts</h3>
-        {% show_latest_posts 3 %}
-        <h3>Most commented posts</h3>
-        {% show_most_commented_posts 3 %}
+    <div class ="box-row">
+        <div class ="stats-box">
+            <span class="stats-label"> I have published {% total_posts %} posts so far</span>
+            <span class="stats-label" >Latest posts</span>
+            {% show_latest_posts 3 %}
+            <span class="stats-label">Most commented posts</span>
+            {% show_most_commented_posts 3 %}
+        </div>
     </div>
     <div>
         {% block content %} {% endblock %}

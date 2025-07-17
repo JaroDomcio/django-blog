@@ -1,7 +1,14 @@
-<ul>
+{% load static %}
+<head>
+    <link rel='stylesheet' href="{% static 'enumerating.css' %}">
+</head>
+
+<ul class="post-enumerating">
     {% for post in posts %}
         <li>
-            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            <div class="post-button">
+                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+            </div>
         </li>
     {% endfor %}
 </ul>
